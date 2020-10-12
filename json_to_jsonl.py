@@ -7,15 +7,16 @@ to a jsonl file (one entry per line)
 github.com/simonlindgren/smalt
 '''
 
-def main():
+def json_to_jsonl(infile,outfile): #infile must be json with all data on one line
+    
     # Read a file with all json on one line and split to a list
-    file = open("fat.json","r")
+    file = open(infile,"r")
     filestring = file.read()
     splitter = "}{"
     filelist = filestring.split(splitter)
 
     # Write the list to a file with each json entry on one line each
-    with open("lined.jsonl", "w") as outfile:
+    with open(outfile, "w") as outfile:
 
         # Deal with first line
         outfile.write(filelist[0] + "}")
@@ -30,6 +31,3 @@ def main():
         # Deal with last line
         outfile.write(filelist[-0] + "}")
         outfile.write("\n")
-
-if __name__ == '__main__':
-    main()
