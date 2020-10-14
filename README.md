@@ -1,5 +1,5 @@
 # smalt
-Social media anlysis tools.
+Social media analysis tools.
 
 This repo is a container for an unstructured mess of scripts and notes that I have found myself using and re-using at different stages of various social media analysis tasks. 
 
