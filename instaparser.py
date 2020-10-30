@@ -96,9 +96,14 @@ def main():
             json_bytes = f.read()
             if len(json_bytes) > 0:
                 data = json.loads(json_bytes)
-                username = data['node']['owner']['id']
+                try:
+                    username = data['node']['owner']['id']
+                    usernames.append(username)
+                except:
+                    usernames.append("NaN")
+
                 file_ids.append(file_id)
-                usernames.append(username)
+
 
     users_df = pd.DataFrame(list(zip(file_ids, usernames)))
     users_df.columns = ['id', 'user']
