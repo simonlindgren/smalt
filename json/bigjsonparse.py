@@ -50,14 +50,15 @@ def filter_keys(filepath, wanted_keys):  # process 1 line at a time and write to
                 print("\r"+str(c), end="")
 
 
-def to_pandas():  # read 'filtered_data.jsonl" to pandas and write csv
-    data_dicts = []
-    with open("filtered_data.jsonl", "r") as f:
-        for c, line in enumerate(f):
-            print("\r"+str(c), end="")
-            try:
-                data_dicts.append(eval(line))
-            except Exception:
-                pass
-    df = pd.DataFrame(data_dicts)
-    df.to_csv("filtered_data.csv", index=False)
+def to_csv(): # read 'filtered_data.jsonl" line by line and write to csv
+    with open("filtered_data.csv", "w") as outfile:
+    with open("filtered_data.jsonl", "r") as infile:
+        header = eval(infile.readline())
+        header = ",".join([k for k,v in header.items()])
+        outfile.write(header + "\n")
+
+        for i in infile.readlines():
+            dataline = eval(i)
+            dataline = ",".join([v for k,v in dataline.items()])
+            outfile.write(dataline + "\n")
+    
