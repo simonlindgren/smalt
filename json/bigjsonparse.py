@@ -57,8 +57,8 @@ def to_csv(): # read 'filtered_data.jsonl" line by line and write to csv
         header = ",".join([k for k,v in header.items()])
         outfile.write(header + "\n")
 
-        for i in infile.readlines():
+        for c,i in enumerate(infile.readlines()):
             dataline = eval(i)
             dataline = ",".join([v for k,v in dataline.items()])
             outfile.write(dataline + "\n")
-    
+            print("\r" + str(c+1) + "/" + str(len(infile.readlines())), end="")
