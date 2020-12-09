@@ -52,13 +52,13 @@ def filter_keys(filepath, wanted_keys):  # process 1 line at a time and write to
 
 def to_csv(): # read 'filtered_data.jsonl" line by line and write to csv
     with open("filtered_data.csv", "w") as outfile:
-    with open("filtered_data.jsonl", "r") as infile:
-        header = eval(infile.readline())
-        header = ",".join([k for k,v in header.items()])
-        outfile.write(header + "\n")
+        with open("filtered_data.jsonl", "r") as infile:
+            header = eval(infile.readline())
+            header = ",".join([k for k,v in header.items()])
+            outfile.write(header + "\n")
 
-        for c,i in enumerate(infile.readlines()):
-            dataline = eval(i)
-            dataline = ",".join([v for k,v in dataline.items()])
-            outfile.write(dataline + "\n")
-            print("\r" + str(c+1) + "/" + str(len(infile.readlines())), end="")
+            for c,i in enumerate(infile):
+                dataline = eval(i)
+                dataline = ",".join([str(v) for k,v in dataline.items()])
+                outfile.write(dataline + "\n")
+                print("\r" + str(c+1), end="")
