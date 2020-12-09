@@ -11,7 +11,7 @@ import bigjsonparse as bjp
 bjp.get_keys("/path/to/file.jsonl")
 wanted_keys = ['list', 'of', 'your', 'choosing']
 bjp.filter_keys("/path/to/file.jsonl", wanted_keys)
-bjp.to_pandas()
+bjp.to_csv()
 
 This script from https://github.com/simonlindgren/smalt
 '''
