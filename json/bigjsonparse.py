@@ -59,6 +59,14 @@ def to_csv(): # read 'filtered_data.jsonl" line by line and write to csv
 
             for c,i in enumerate(infile):
                 dataline = eval(i)
+
+                # for csv parsing, replace in-text " with ' and
+                # enclose all of full_text in " "
+                raw = dataline['full_text']
+                raw = raw.replace('"', "'").replace('”', "'").replace('“', "'")
+                raw = '"' + raw + '"'
+                dataline['full_text'] = raw
+
                 dataline = ",".join([str(v) for k,v in dataline.items()])
                 outfile.write(dataline + "\n")
                 print("\r" + str(c+1), end="")
